@@ -23,6 +23,7 @@ spring:
             data-type: json
             rule-type: flow
       eager: true #立即加载
+
 #配置Eureka
 eureka:
   client:

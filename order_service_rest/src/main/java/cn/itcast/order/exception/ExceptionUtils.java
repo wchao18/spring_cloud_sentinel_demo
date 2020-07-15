@@ -8,7 +8,7 @@ import feign.Feign;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 
-public class ExceptionUtils {
+public class  ExceptionUtils {
 
 	/**
 	 * 静态方法
@@ -17,13 +17,17 @@ public class ExceptionUtils {
 	 */
 	//限流熔断业务逻辑
 	public static SentinelClientHttpResponse handleBlock(HttpRequest request, byte[] body, ClientHttpRequestExecution execution, BlockException ex) {
-		return new SentinelClientHttpResponse("abc");
+	    Product product = new Product();
+	    product.setProductName("限流熔断");
+		return new SentinelClientHttpResponse(JSON.toJSONString(product));
 	}
 
 	//异常降级业务逻辑
 	public static SentinelClientHttpResponse handleFallback(HttpRequest request, byte[] body,
 		ClientHttpRequestExecution execution, BlockException ex) {
-		return new SentinelClientHttpResponse("def");
+        Product product = new Product();
+        product.setProductName("异常降级");
+		return new SentinelClientHttpResponse(JSON.toJSONString(product));
 	}
 
 }
